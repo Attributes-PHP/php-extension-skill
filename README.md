@@ -1,6 +1,6 @@
 # php-extension-skill
 
-A Vibe skill for PHP extension development and PHP internals lookup.
+Skill for PHP extension development and PHP internals lookup.
 
 ## Overview
 
@@ -38,9 +38,4 @@ See [SKILL.md](SKILL.md) for complete documentation, including:
 - Debugging and development tips
 - Troubleshooting guide
 
----
-
-**Skill Metadata:**
-- Name: `php-extensions`
-- Version: 2.1.0
-- Author: matapatos
+Attributes Validation Extension was created by **[André Gil](https://www.linkedin.com/in/andre-gil/)** and is open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
