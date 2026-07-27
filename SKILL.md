@@ -1,3 +1,14 @@
+---
+name: php-extensions
+description: >
+    Guidelines and tools for building safe, reliable PHP C extensions. Provides best practices
+    for memory management, error handling, version compatibility, and testing. Automatically
+    sets up the php-src repository for cross-platform source code lookups. Supports PHP 8.5
+    and all previous versions.
+author: matapatos
+version: 3.0.0
+---
+
 PHP C Extension Specific Guidelines. Merge with project-specific instructions as needed.
 
 **Tradeoff:** These guidelines bias toward safety over convenience. For trivial tasks, use judgment.
