@@ -9,11 +9,10 @@ Build safe, reliable PHP extensions with confidence.
 Writing PHP C extensions is powerful but unforgiving. One wrong reference count and your PHP process crashes. This skill gives you the guardrails to build extensions that work reliably across PHP versions.
 
 ```
-     __ __  ____  __  ______                  __                  _                             __   _ ____
-  __/ // /_/ __ \/ / / / __ \      ___  _  __/ /____  ____  _____(_)___  ____  _____      _____/ /__(_) / /
- /_  _  __/ /_/ / /_/ / /_/ /_____/ _ \| |/_/ __/ _ \/ __ \/ ___/ / __ \/ __ \/ ___/_____/ ___/ //_/ / / /
-/_  _  __/ ____/ __  / ____/_____/  __/>  </ /_/  __/ / / (__  ) / /_/ / / / (__  )_____(__  ) ,< / / / /
- /_//_/ /_/   /_/ /_/_/          \___/_/|_|\__/\___/_/ /_/____/_/\____/_/ /_/____/     /____/_/|_/_/_/_/
+        ___  _ _  ___            _                 _                 _    _  _  _
+ _|_|_ | . \| | || . \  ___ __ _| |_ ___ ._ _  ___<_> ___ ._ _   ___| |__<_>| || |
+ _|_|_ |  _/|   ||  _/ / ._>\ \/| | / ._>| ' |<_-<| |/ . \| ' | <_-<| / /| || || |
+  | |  |_|  |_|_||_|   \___./\_\|_| \___.|_|_|/__/|_|\___/|_|_| /__/|_\_\|_||_||_|
 ```
 
 ## The 8 Rules of Safe PHP Extensions
