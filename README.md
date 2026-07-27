@@ -1,41 +1,76 @@
-# php-extension-skill
+# PHP C Extension Skill
 
-Skill for PHP extension development and PHP internals lookup.
+Build safe, reliable PHP extensions with confidence.
 
-## Overview
+---
 
-This skill enables AI agents to answer questions about PHP extensions, internals, and the Zend Engine by automatically downloading and maintaining the PHP source code repository (`php-src`).
+## Why This Skill?
 
-## Features
+Writing PHP C extensions is powerful but unforgiving. One wrong reference count and your PHP process crashes. This skill gives you the guardrails to build extensions that work reliably across PHP versions.
 
-- **Source Code Lookup**: Automatically clones and maintains `php-src` in a temporary folder
-- **Cross-Platform**: Works on Windows (Git Bash/WSL, PowerShell), Linux, and macOS
-- **PHP Version Support**: Supports PHP 8.5 and all previous versions
-- **Comprehensive Documentation**: Detailed information about PHP internals, extension API, Zend Engine, and more
+```
+     __ __  ____  __  ______                  __                  _                             __   _ ____
+  __/ // /_/ __ \/ / / / __ \      ___  _  __/ /____  ____  _____(_)___  ____  _____      _____/ /__(_) / /
+ /_  _  __/ /_/ / /_/ / /_/ /_____/ _ \| |/_/ __/ _ \/ __ \/ ___/ / __ \/ __ \/ ___/_____/ ___/ //_/ / / /
+/_  _  __/ ____/ __  / ____/_____/  __/>  </ /_/  __/ / / (__  ) / /_/ / / / (__  )_____(__  ) ,< / / / /
+ /_//_/ /_/   /_/ /_/_/          \___/_/|_|\__/\___/_/ /_/____/_/\____/_/ /_/____/     /____/_/|_/_/_/_/
+```
 
-## Use Cases
+## The 8 Rules of Safe PHP Extensions
 
-- Look up PHP extension API functions (`zend_*`, `php_*`, `ZEND_*` macros)
-- Understand extension implementation details
-- Explore PHP internals and Zend Engine behavior
-- Research extension configuration and php.ini directives
-- Investigate PHP function implementations
-- Check version-specific extension changes
+These are the core principles that prevent segfaults, memory leaks, and version incompatibilities:
 
-## Quick Start
+| # | Rule | Why It Matters |
+|---|------|----------------|
+| 1 | **Consult the Internals Book first** | PHP internals behavior is non-obvious |
+| 2 | **Avoid `_` functions** | Internal APIs change without notice |
+| 3 | **Always use generated arginfo** | Manual arginfo is error-prone |
+| 4 | **Test with PHPT** | C-level functionality needs C-level tests |
+| 5 | **Respect reference counting** | The Golden Rule of PHP memory management |
+| 6 | **Use PHP error handling** | `php_error_docref()`, not `assert()` |
+| 7 | **Check version compatibility** | PHP 7, 8.0, 8.1+ all behave differently |
+| 8 | **Use TSRM for shared state** | Thread-safe globals when needed |
+
+See [SKILL.md](SKILL.md) for the full guidelines.
+
+---
+
+## What This Skill Does
 
 When loaded, this skill:
-1. Sets up `${SCRATCHPAD}/.php-extensions/php-src/` with the PHP source code
-2. Provides search and navigation commands for the codebase
-3. Offers examples and patterns for common PHP internals questions
 
-## Documentation
+1. **Sets up PHP source** – Clones `php-src` to `${SCRATCHPAD}/.php-extensions/php-src/`
+2. **Enables smart lookup** – Search and navigate the PHP internals codebase
+3. **Provides patterns** – Examples and solutions for common extension challenges
 
-See [SKILL.md](SKILL.md) for complete documentation, including:
-- Repository setup and maintenance commands
-- PHP source code structure
-- Common patterns and APIs
-- Debugging and development tips
-- Troubleshooting guide
+---
 
-Attributes Validation Extension was created by **[André Gil](https://www.linkedin.com/in/andre-gil/)** and is open-sourced software licensed under the **[MIT license](https://opensource.org/licenses/MIT)**.
+## Practical Use Cases
+
+- **"How do I properly return a zval?"** → `RETURN_ZVAL(&zv, 1, 0)`
+- **"What's the safe way to destroy a zval?"** → `zval_ptr_dtor(&zv)`
+- **"How do I handle PHP version differences?"** → Use `PHP_VERSION_ID` checks
+- **"Where do I find the Zend API docs?"** → [PHP Internals Book](https://www.phpinternalsbook.com/)
+
+---
+
+## Quick Reference
+
+| Need | Use | Avoid |
+|------|-----|--------|
+| Destroy zval | `zval_ptr_dtor()` | `zval_dtor()`, `efree()` |
+| Add to hashtable | `zend_hash_str_add_new()` | direct insertion |
+| Return string | `RETURN_STRING()`, `RETURN_NEW_STR()` | manual allocation |
+| Error handling | `php_error_docref()`, `zend_throw_exception()` | `assert()` |
+
+---
+
+## System Requirements
+
+- **Cross-Platform**: Works on Linux, macOS, Windows (Git Bash/WSL/PowerShell)
+- **PHP Versions**: Supports PHP 8.5 and all previous versions
+- **Dependencies**: Git, standard C development tools
+
+---
+
+**Created by [Andre Gil](https://www.linkedin.com/in/andre-gil/) | MIT License**
