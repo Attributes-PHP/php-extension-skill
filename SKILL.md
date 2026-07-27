@@ -1,3 +1,14 @@
+---
+name: php-extensions
+description: >
+    Guidelines and tools for building safe, reliable PHP C extensions. Provides best practices
+    for memory management, error handling, version compatibility, and testing. Automatically
+    sets up the php-src repository for cross-platform source code lookups. Supports PHP 8.5
+    and all previous versions.
+author: matapatos
+version: 3.0.0
+---
+
 PHP C Extension Specific Guidelines. Merge with project-specific instructions as needed.
 
 **Tradeoff:** These guidelines bias toward safety over convenience. For trivial tasks, use judgment.
@@ -23,22 +34,26 @@ PHP C Extension Specific Guidelines. Merge with project-specific instructions as
 
 **Never create arginfo manually.** Always use generated stubs:
 - Create `.stub.php` file with function or class signatures
-- Use `build/gen_stub` to generate those `arginfos`
+- Use `build/gen_stub` to generate those `arginfos` - need to build the extension first via `phpize && configure`
 - Include generated header in your main C file
 
 **Why:** Manual arginfo is error-prone and hard to maintain.
 
 ## 4. Testing
 
+**Always follow TDD (Test-Driven Development):** Write tests before implementing or updating any feature.
+
 **Always test with PHPT for core extension functionality.**
 
 - PHPT: C-level extension, memory safety, edge cases
 - PestPHP: Complex scenarios, integration, faster iteration
 
-**Workflow:**
-1. PHPT tests for every function
-2. Edge cases and error conditions
-3. Valgrind to verify no memory leaks
+**TDD Workflow:**
+1. Write failing PHPT test for the new/updated feature
+2. Implement the minimal code to make the test pass
+3. Refactor while keeping tests passing
+4. Add edge cases and error condition tests
+5. Verify with Valgrind for memory leaks
 
 ## 5. Memory Management
 
