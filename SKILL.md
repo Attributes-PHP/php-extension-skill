@@ -19,8 +19,9 @@ Before implementing:
 
 - Create tests for the new implementation.
 - If existent tests exist ensure those match the new implementation.
-- Rely on PHPT for end-to-end testing, memory safety and edge cases.
-- Rely on PestPHP for complex scenarios, unit tests and integration tests.
+- Use [PestPHP](https://pestphp.com/llms.txt) for PHP userland function/class/method tests.
+- Use [Ceedling](https://throwtheswitch.github.io/Ceedling/latest/) for C function tests.
+- Avoid using PHPT tests. PHPT tests are hard to read.
 
 ## B. Function Selection
 
@@ -81,7 +82,7 @@ Always use generated stubs:
 
 **Never guess. PHP internals behavior is often non-obvious.**
 
-When in doubt check the resources bellow. Ensure to check only the versions the extension supports.
+When in doubt check the resources below. Ensure to check only the versions the extension supports.
 
 - [PHP Internals Book](https://www.phpinternalsbook.com/)
 - PHP source code.
